@@ -88,6 +88,7 @@ export const statsCardData = [
       />
     ),
     path: "/members",
+    nativePath: "Members",
   },
   {
     id: 4,
@@ -101,6 +102,7 @@ export const statsCardData = [
       />
     ),
     path: "/cases",
+    nativePath: "Cases",
   },
   {
     id: 5,
@@ -114,5 +116,6 @@ export const statsCardData = [
       />
     ),
     path: "/profile",
+    nativePath: "Profile",
   },
 ];

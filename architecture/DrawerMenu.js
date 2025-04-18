@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, Text, View } from "react-native";
-import { DrawerItem, createDrawerNavigator } from "@react-navigation/drawer";
+import { Text, View } from "react-native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Navbar from "./Navbar";
 import CustomDrawerContent from "./CustomDrawerContent";
+import Profile2 from "../pages/profile/Profile";
 
 const Drawer = createDrawerNavigator();
 
@@ -31,18 +32,10 @@ export default function DrawerMenu() {
         />
         <Drawer.Screen
           name="Profile"
-          component={ProfileScreen}
+          component={Profile2}
         />
       </Drawer.Navigator>
     </NavigationContainer>
-  );
-}
-
-function ProfileScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Profile Screen</Text>
-    </View>
   );
 }
 

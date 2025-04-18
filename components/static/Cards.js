@@ -1,9 +1,10 @@
-import { Link } from "@react-navigation/native";
+import { Link, useNavigation } from "@react-navigation/native";
 import React from "react";
 import styled from "styled-components/native";
 import { ButtonSmall, ButtonText } from "./Buttons";
 
 export default function DashboardCard({ item }) {
+  const nav = useNavigation();
   return (
     <Card>
       <CardContent>
@@ -13,7 +14,9 @@ export default function DashboardCard({ item }) {
       <Stack>
         <CardAction1>
           <ButtonSmall>
-            <ButtonText>VIEW</ButtonText>
+            <ButtonText onPress={() => nav.navigate(item.nativePath)}>
+              VIEW
+            </ButtonText>
           </ButtonSmall>
         </CardAction1>
         <CardAction2>

@@ -8,20 +8,35 @@ import { View } from "react-native";
 
 export default function CustomDrawerContent(props) {
   return (
-    <DrawerContentScrollView {...props}>
+    <DrawerContentScrollView
+      contentContainerStyle={{
+        flex: 1,
+        justifyContent: "space-between",
+      }}
+      {...props}
+    >
+      <View>
+        <DrawerItem
+          label={() => (
+            <View style={{ marginLeft: "auto" }}>
+              <MaterialIcons
+                name="chevron-left"
+                size={24}
+                color="black"
+              />
+            </View>
+          )}
+          onPress={() => props.navigation.closeDrawer()}
+        />
+        <DrawerItemList {...props} />
+      </View>
       <DrawerItem
-        label={() => (
-          <View style={{ marginLeft: "auto" }}>
-            <MaterialIcons
-              name="chevron-left"
-              size={24}
-              color="black"
-            />
-          </View>
-        )}
-        onPress={() => props.navigation.closeDrawer()}
+        label="Log Out"
+        onPress={() => {
+          props.navigation.closeDrawer();
+          alert("This should log you out...ideally");
+        }}
       />
-      <DrawerItemList {...props} />
     </DrawerContentScrollView>
   );
 }
