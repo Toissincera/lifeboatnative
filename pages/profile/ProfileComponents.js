@@ -56,7 +56,7 @@ export const RoleInfo = {
     flexDirection: "row",
     width: "100%",
     alignItems: "center",
-    padding: 8,
+    padding: 4,
   }),
   Text: styled.Text({
     flex: 1,
