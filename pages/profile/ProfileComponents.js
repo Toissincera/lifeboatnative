@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const ProfileParent = styled.View({
+export const ProfileParent = styled.ScrollView({
   display: "flex",
   flexDirection: "column",
   flex: 1,

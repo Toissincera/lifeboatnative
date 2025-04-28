@@ -14,7 +14,7 @@ import CurrencyRupee from "@mui/icons-material/CurrencyRupee";
 import Skeleton from "../../components/skeleton/Skeleton";
 import HourglassTop from "@mui/icons-material/HourglassTop";
 import { Link } from "react-router-dom";
-import { dateTimeShow } from "./Profile";
+import { dateTimeShow } from "./OLDProfile";
 import { isoDateToFullFormat } from "../../utils/string.utils";
 
 export default function MyDonations({ donos }) {

@@ -23,9 +23,9 @@ import {
   Home,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import MyAssignedCases from "./MyAssignedCases";
-import MyCreatedCases from "./MyCreatedCases";
-import MyDonations from "./MyDonations";
+import MyAssignedCases from "./OLDMyAssignedCases";
+import MyCreatedCases from "./OLDMyCreatedCases";
+import MyDonations from "./OLDMyDonations";
 import { isoDateToFullFormat } from "../../utils/string.utils";
 import Skeleton from "../../components/skeleton/Skeleton";
 

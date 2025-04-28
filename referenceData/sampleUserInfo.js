@@ -1,4 +1,4 @@
-export const MockAPIResponse = {
+export const mockAPIResponse = {
   user: {
     member_uid: "ae49c135-8653-4cf3-b64a-6c3025548661",
     photo: null,

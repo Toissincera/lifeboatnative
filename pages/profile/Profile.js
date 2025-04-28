@@ -3,6 +3,7 @@ import { Link } from "@react-navigation/native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { ProfileParent, Avatar, UserInfo, RoleInfo } from "./ProfileComponents";
 import { StyleSheet } from "react-native";
+import MyDonations from "./MyDonations";
 
 export default function Profile2() {
   return (
@@ -76,6 +77,10 @@ export default function Profile2() {
           142 110025
         </RoleInfo.Text>
       </RoleInfo.Parent>
+
+      
+      <MyDonations />
+
     </ProfileParent>
   );
 }
