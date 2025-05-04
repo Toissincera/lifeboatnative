@@ -8,16 +8,16 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { mockAPIResponse } from "../../referenceData/sampleUserInfo";
 import { isoDateToFullFormat } from "../../utils/string.utils";
 
-export default function MyDonations() {
+export default function MyAssignedCases() {
   const nav = useNavigation();
   const [open, setOpen] = useState(false);
-  const [allDonos, setAllDonos] = useState(mockAPIResponse.memberDonations);
+  const [myCases, setMyCases] = useState(mockAPIResponse.assignedCases);
 
   return (
     <ListItem.Accordion
       content={
         <ListItem.Content>
-          <ListItem.Title>My Donations</ListItem.Title>
+          <ListItem.Title>My Assigned Cases</ListItem.Title>
         </ListItem.Content>
       }
       isExpanded={open}
@@ -37,48 +37,39 @@ export default function MyDonations() {
       >
         <View style={sx.flexRow}>
           <Text style={[sx.all, sx.casename, sx.header]}>Case Name</Text>
-          <Text style={[sx.all, sx.tranxid, sx.header]}>Transaction ID</Text>
-          <Text style={[sx.all, sx.amount, sx.header]}>
+          <Text style={[sx.all, sx.assignee, sx.header]}>Assignee</Text>
+          <Text style={[sx.all, sx.target, sx.header]}>
             <MaterialIcons
               name="currency-rupee"
               size={16}
               color="green"
             />
-            Donated
+            Target
           </Text>
-          <Text style={[sx.all, sx.donateAt, sx.header]}>Donated At</Text>
-          <Text style={[sx.all, sx.verifyAt, sx.header]}>Verified At</Text>
+          <Text style={[sx.all, sx.status, sx.header]}>Status</Text>
+          <Text style={[sx.all, sx.updatedAt, sx.header]}>Updated At</Text>
         </View>
 
-        {allDonos.map((caase, ix) =>
-          caase.donations.map((oneDono, i) => (
-            <Pressable
-              style={sx.flexRow}
-              key={`${ix}-${i}`}
-              onPress={() => alert("TODO")}
-            >
-              <Text style={[sx.all, sx.casename]}>{caase.case_name}</Text>
-              <Text style={[sx.all, sx.tranxid]}>
-                {oneDono.donation_reference_id}
-              </Text>
-              <Text style={[sx.all, sx.amount]}>{oneDono.amount}</Text>
-              <Text style={[sx.all, sx.donateAt]}>
-                {isoDateToFullFormat(oneDono.donated_at)}
-              </Text>
-              <Text style={[sx.all, sx.verifyAt]}>
-                {oneDono.is_verified ? (
-                  isoDateToFullFormat(oneDono.verified_at)
-                ) : (
-                  <MaterialIcons
-                    name="hourglass-top"
-                    size={24}
-                    color="black"
-                  />
-                )}
-              </Text>
-            </Pressable>
-          ))
-        )}
+        {myCases.map((caase, ix) => (
+          <Pressable
+            style={sx.flexRow}
+            key={ix}
+            onPress={() => alert("TODO")}
+          >
+            <Text style={[sx.all, sx.casename]}>{caase.name}</Text>
+            <Text style={[sx.all, sx.assignee]}>
+              {caase.assignee?.user?.first_name}{" "}
+              {caase.assignee?.user?.last_name}
+            </Text>
+            <Text style={[sx.all, sx.target]}>
+              {caase.target_amount ? caase.target_amount : "NOT SET"}
+            </Text>
+            <Text style={[sx.all, sx.status]}>{caase.latest_status}</Text>
+            <Text style={[sx.all, sx.updatedAt]}>
+              {isoDateToFullFormat(caase.updated_at)}
+            </Text>
+          </Pressable>
+        ))}
       </ScrollView>
     </ListItem.Accordion>
   );
@@ -107,8 +98,8 @@ const sx = StyleSheet.create({
     borderBottomColor: "rgb(224,224,224)",
   },
   casename: { width: 150 },
-  tranxid: { width: 100 },
-  amount: { width: 80 },
-  donateAt: { width: 150 },
-  verifyAt: { width: 150 },
+  assignee: { width: 100 },
+  target: { width: 80 },
+  status: { width: 80 },
+  updatedAt: { width: 150 },
 });

@@ -4,6 +4,8 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { ProfileParent, Avatar, UserInfo, RoleInfo } from "./ProfileComponents";
 import { StyleSheet } from "react-native";
 import MyDonations from "./MyDonations";
+import MyCreatedCases from "./MyCreatedCases";
+import MyAssignedCases from "./MyAssignedCases";
 
 export default function Profile2() {
   return (
@@ -78,9 +80,9 @@ export default function Profile2() {
         </RoleInfo.Text>
       </RoleInfo.Parent>
 
-      
       <MyDonations />
-
+      <MyAssignedCases />
+      <MyCreatedCases />
     </ProfileParent>
   );
 }
