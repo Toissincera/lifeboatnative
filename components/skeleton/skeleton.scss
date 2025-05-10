@@ -1,0 +1,44 @@
+@import "../../../global.scss";
+.circle,
+.custom {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom {
+  flex-direction: column;
+}
+
+.balls {
+  display: flex;
+}
+
+.ball {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #1976d2;
+  margin-right: 10px;
+  animation: ball 0.5s ease infinite alternate;
+}
+
+.ball2 {
+  animation-delay: 0.1s;
+}
+
+.ball3 {
+  animation-delay: 0.2s;
+}
+
+@keyframes ball {
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+.customTet {
+  font-weight: 100;
+}
