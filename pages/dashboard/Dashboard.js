@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import CircularLoading from "../../components/animated/CircularLoading";
-import DashboardCard from "../../components/static/Cards";
+import CircularLoading from "../../componentsNative/animated/CircularLoading";
+import DashboardCard from "../../componentsNative/static/Cards";
 import { statsCardData } from "../../referenceData/formSource";
 
 export default function Dashboard() {

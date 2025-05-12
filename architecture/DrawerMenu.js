@@ -6,6 +6,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import Navbar from "./Navbar";
 import CustomDrawerContent from "./CustomDrawerContent";
 import Profile2 from "../pages/profile/Profile";
+import SignUp from "../pages/auth/SignUp";
 
 const Drawer = createDrawerNavigator();
 
@@ -33,6 +34,10 @@ export default function DrawerMenu() {
         <Drawer.Screen
           name="Profile"
           component={Profile2}
+        />
+        <Drawer.Screen
+          name="SignUp"
+          component={SignUp}
         />
       </Drawer.Navigator>
     </NavigationContainer>
