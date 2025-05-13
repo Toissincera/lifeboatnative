@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { DAL_CONFIG } from './config'
 
 export const AuthService = {
@@ -50,7 +51,7 @@ export const AuthService = {
           token: access,
           lastLoginTime: new Date(),
         }
-        sessionStorage.setItem('user', JSON.stringify(user))
+        AsyncStorage.setItem('user', JSON.stringify(user))
         return Promise.resolve(user)
       } else {
         return Promise.resolve(access)
@@ -59,7 +60,7 @@ export const AuthService = {
   },
   logout: (refresh) => {
     return DAL_CONFIG.auth.logout(refresh).finally(() => {
-      sessionStorage.clear()
+      AsyncStorage.removeItem('user')
       return Promise.resolve(true)
     })
   },

@@ -7,14 +7,17 @@ import * as Yup from "yup";
 // import StepperLanding from "../components/Stepper";
 // import { GoogleLogin } from "@react-oauth/google";
 
-import { Text, View, Button, ScrollView } from "react-native";
+import { Text, ScrollView } from "react-native";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ControllerFormInput } from "../../components/forms/TextGrid";
+import { Button } from "@rneui/base";
+import { AuthService } from "../../data/services/auth.service";
 
 export default function SignUp() {
   // const [snackbar, setSnackbar] = useRecoilState(snackbarState);
   // const [user, setUser] = useRecoilState(UserState);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState("  ...   ");
 
   const validationSchema = Yup.object({
@@ -64,51 +67,53 @@ export default function SignUp() {
   //   });
   // };
 
-  // const handleOnSubmit = (data) => {
-  //   let cleanUsername =
-  //     data.username.slice(0, 1).toLowerCase() + data.username.slice(1);
-  //   setLoading(true);
-  //   AuthService.signup(
-  //     data.first_name,
-  //     data.last_name,
-  //     data.email,
-  //     cleanUsername,
-  //     data.password
-  //   )
-  //     .then((result) => {
-  //       setSnackbar({
-  //         severity: "success",
-  //         message: `Welcome ${user.member_full_name}! Complete member details...`,
-  //         open: true,
-  //       });
-  //       return AuthService.login(data.username, data.password);
-  //     })
-  //     .then((result) => {
-  //       setUser(result);
-  //       console.log(result);
-  //       setSnackbar({
-  //         ...snackbar,
-  //         severity: "success",
-  //         message:
-  //           result?.memberRole == null
-  //             ? "Complete Member Details"
-  //             : `Welcome ${result.data.member_full_name}!`,
-  //         open: true,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       setSnackbar({
-  //         severity: "error",
-  //         message: err?.error?.non_field_errors || "Unknown login error",
-  //         open: true,
-  //       });
-  //     })
-  //     .finally(() => {
-  //       setTimeout(() => {
-  //         setLoading(false);
-  //       }, 300);
-  //     });
-  // };
+  const handleOnSubmit = (data) => {
+    setLoading(true);
+    let cleanUsername =
+      data.username.slice(0, 1).toLowerCase() + data.username.slice(1);
+    AuthService.signup(
+      data.first_name,
+      data.last_name,
+      data.email,
+      cleanUsername,
+      data.password
+    )
+      .then((result) => {
+        // setSnackbar({
+        //   severity: "success",
+        //   message: `Welcome ${user.member_full_name}! Complete member details...`,
+        //   open: true,
+        // });
+        console.log("signup result => ", JSON.stringify(result, null, 4));
+        return AuthService.login(data.username, data.password);
+      })
+      .then((result) => {
+        // setUser(result);
+        console.log("signed in as => ", result);
+        // setSnackbar({
+        //   ...snackbar,
+        //   severity: "success",
+        //   message:
+        //     result?.memberRole == null
+        //       ? "Complete Member Details"
+        //       : `Welcome ${result.data.member_full_name}!`,
+        //   open: true,
+        // });
+      })
+      .catch((err) => {
+        // setSnackbar({
+        //   severity: "error",
+        //   message: err?.error?.non_field_errors || "Unknown login error",
+        //   open: true,
+        // });
+        console.log("Error => ", err);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 300);
+      });
+  };
 
   const {
     control,
@@ -117,11 +122,6 @@ export default function SignUp() {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-
-  const onSubmit = (data) => {
-    setFormData(JSON.stringify(data, null, 8));
-    console.log(data);
-  };
 
   return (
     <ScrollView style={{ padding: 24 }}>
@@ -162,8 +162,9 @@ export default function SignUp() {
         errors={errors.password}
       />
       <Button
-        title="Submit"
-        onPress={handleSubmit(onSubmit)}
+        title="Sign Up Now!"
+        onPress={handleSubmit(handleOnSubmit)}
+        loading={loading}
       />
       <Text>{formData}</Text>
     </ScrollView>

@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { atom, selector, selectorFamily } from "recoil";
 import { recoilPersist } from "recoil-persist";
 // const { persistAtom } = recoilPersist()
@@ -5,7 +6,7 @@ import { recoilPersist } from "recoil-persist";
 
 const { persistAtom } = recoilPersist({
   key: "persist-state", // this key is using to store data in local storage
-  storage: sessionStorage, // configurate which stroage will be used to store the data
+  storage: AsyncStorage, // configurate which stroage will be used to store the data
 });
 
 

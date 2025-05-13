@@ -1,8 +1,10 @@
+import AsyncStorage from "@react-native-async-storage/async-storage"
+
 export const BASE_URL = 'https://maj.pythonanywhere.com/api/v1'
 // export const BASE_URL = 'http://localhost:8000/api/v1'
 
-const getToken = () => {
-  const user = JSON.parse(sessionStorage.getItem('user'))
+async function getToken () {
+  const user = JSON.parse(AsyncStorage.getItem('user'));
   const token = user && user.token
   return token
 }
