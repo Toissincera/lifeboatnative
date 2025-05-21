@@ -1,8 +1,8 @@
 import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useRef } from "react";
-import { Animated, Easing, StyleSheet } from "react-native";
+import { Animated, Easing, StyleSheet, View } from "react-native";
 
-export default function CircularLoading() {
+export default function CircularLoading({ fullScreen }) {
   // const rotateAnim = useRef(new Animated.Value(0)).current;  <= expensive, super buggy, but can tinker with it
   const isFocused = useIsFocused();
   const rotateAnim = new Animated.Value(0);
@@ -22,6 +22,15 @@ export default function CircularLoading() {
     inputRange: [0, 1],
     outputRange: ["0deg", "360deg"],
   });
+
+  if (fullScreen)
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Animated.View
+          style={[styles.spinnerStyle, { transform: [{ rotate: spin }] }]}
+        ></Animated.View>
+      </View>
+    );
 
   return (
     <Animated.View

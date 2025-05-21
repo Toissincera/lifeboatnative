@@ -1,7 +1,12 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
-export const BASE_URL = 'https://maj.pythonanywhere.com/api/v1'
+// export const BASE_URL = 'https://maj.pythonanywhere.com/api/v1'
+
+// Below is for web use, no config needed
 // export const BASE_URL = 'http://localhost:8000/api/v1'
+
+// Below is for dev use, IP matches ipconfig IPv4 address, then add :8000, then runserver 0.0.0.0:8000
+export const BASE_URL = 'http://192.168.0.52:8000/api/v1'
 
 async function getToken () {
   const user = JSON.parse(AsyncStorage.getItem('user'));

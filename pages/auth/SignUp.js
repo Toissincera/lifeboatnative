@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
+// import { useRecoilState } from "recoil";
 import * as Yup from "yup";
-// import { snackbarState, UserState } from "../recoil/atom";
+// import { snackbarState, UserState } from "../../recoil/atom";
 // import { TextGrid } from "./../components/forms";
 // import { AuthService } from "../../data/services";
 // import StepperLanding from "../components/Stepper";
@@ -17,8 +17,12 @@ import { AuthService } from "../../data/services/auth.service";
 export default function SignUp() {
   // const [snackbar, setSnackbar] = useRecoilState(snackbarState);
   // const [user, setUser] = useRecoilState(UserState);
+  const [user, setUser] = useState({
+    access: "noAccess",
+    refresh: "noRefresh",
+    member_uid: "noMemberUID",
+  });
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState("  ...   ");
 
   const validationSchema = Yup.object({
     firstName: Yup.string().required("First name is required"),
@@ -88,7 +92,7 @@ export default function SignUp() {
         return AuthService.login(data.username, data.password);
       })
       .then((result) => {
-        // setUser(result);
+        setUser(result);
         console.log("signed in as => ", result);
         // setSnackbar({
         //   ...snackbar,
@@ -166,7 +170,9 @@ export default function SignUp() {
         onPress={handleSubmit(handleOnSubmit)}
         loading={loading}
       />
-      <Text>{formData}</Text>
+      <Text>{user.access || "No user access token"}</Text>
+      <Text>{user.refresh || "No refresh token"}</Text>
+      <Text>{user.member_uid || "This member has no UID"}</Text>
     </ScrollView>
   );
 }
