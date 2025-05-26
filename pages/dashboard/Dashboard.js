@@ -29,10 +29,8 @@ export default function Dashboard() {
 const styles = StyleSheet.create({
   parent: {
     flex: 1,
-    marginVertical: 2,
-    borderWidth: "4px",
-    borderColor: "red",
-    padding: 8,
+    padding: 4,
+    backgroundColor: "#e6e7ee",
   },
   progress: {
     display: "flex",

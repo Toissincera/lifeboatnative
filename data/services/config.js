@@ -1,7 +1,6 @@
 import { AuthMock } from "../mock";
 import { AuthApi } from "../apis/auth.api";
 import { StatsMock } from "../mock/stats.mock";
-import { StatsService } from "./stats.service";
 import { caseMock } from "../mock/case.mock";
 import { caseAPI } from "../apis/case.api";
 import { CountryMock } from "../mock/country.mock";
