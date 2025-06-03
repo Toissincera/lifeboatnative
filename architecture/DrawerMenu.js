@@ -11,6 +11,7 @@ import { useRecoilValue } from "recoil";
 import { UserState } from "../recoil/atom";
 import CircularLoading from "../componentsNative/animated/CircularLoading";
 import useHydrateUser from "./UserHydration";
+import Members from "../pages/members/Members";
 
 const Drawer = createDrawerNavigator();
 
@@ -45,7 +46,7 @@ export default function DrawerMenu() {
           />
           <Drawer.Screen
             name="Members"
-            component={MembersScreen}
+            component={Members}
           />
           <Drawer.Screen
             name="Profile"
@@ -65,13 +66,5 @@ export default function DrawerMenu() {
         </Drawer.Navigator>
       )}
     </NavigationContainer>
-  );
-}
-
-function MembersScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Members Screen</Text>
-    </View>
   );
 }
